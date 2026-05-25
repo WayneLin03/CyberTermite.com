@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-<meta name="google-site-verification" content="B2H9QnTBb1cbrfrUoZZIhaIOD0MQtZrSShv49wcPEKc" />
 <head>
+    <meta name="google-site-verification" content="B2H9QnTBb1cbrfrUoZZIhaIOD0MQtZrSShv49wcPEKc" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyberTermite</title>
-    
+
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='black'/><text x='50%25' y='45%25' font-family='sans-serif' font-weight='900' font-size='32' fill='white' text-anchor='middle'>CYBER</text><text x='50%25' y='80%25' font-family='sans-serif' font-weight='700' font-size='22' fill='%234CAF50' text-anchor='middle'>TERMITE</text></svg>">
 
     <style>
@@ -15,6 +15,7 @@
             margin: 0;
             padding: 0;
         }
+
         body {
             background-color: #000000; /* 每個頁面的顏色為黑色 */
             color: #ffffff;
@@ -32,34 +33,34 @@
             padding: 30px 60px;
             border-bottom: 1px solid #222;
         }
-        
+
         /* Logo: Cyber 跟 Termite 分行且完美對齊中心線 */
         .logo {
             text-decoration: none;
             display: flex;
             flex-direction: column; /* 分行排列 */
-            align-items: center;    /* 強制上下兩行在自己的範圍內絕對居中對齊 */
+            align-items: center; /* 強制上下兩行在自己的範圍內絕對居中對齊 */
             line-height: 1.1;
         }
-        /* Cyber的文字放大，且寬度比Termite還要寬 */
-        .logo .cyber {
-            font-size: 34px; 
-            color: #ffffff; /* Cyber的顏色要是白的 */
-            font-weight: 900;
-            letter-spacing: 6px; /* 增加字距拉寬寬度 */
-            text-transform: uppercase;
-            text-align: center;
-        }
-        /* Termite的顏色是綠色，且必須要在放大後的Cyber正中間 */
-        .logo .termite {
-            font-size: 20px; 
-            color: #4CAF50; /* Termite的顏色是綠色 */
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-align: center; /* 置中對齊 */
-            margin-top: 2px;
-        }
-        
+            /* Cyber的文字放大，且寬度比Termite還要寬 */
+            .logo .cyber {
+                font-size: 34px;
+                color: #ffffff; /* Cyber的顏色要是白的 */
+                font-weight: 900;
+                letter-spacing: 6px; /* 增加字距拉寬寬度 */
+                text-transform: uppercase;
+                text-align: center;
+            }
+            /* Termite的顏色是綠色，且必須要在放大後的Cyber正中間 */
+            .logo .termite {
+                font-size: 20px;
+                color: #4CAF50; /* Termite的顏色是綠色 */
+                font-weight: 700;
+                letter-spacing: 1px;
+                text-align: center; /* 置中對齊 */
+                margin-top: 2px;
+            }
+
         nav a {
             color: #ffffff;
             text-decoration: none;
@@ -69,9 +70,10 @@
             cursor: pointer;
             transition: color 0.3s;
         }
-        nav a:hover, nav a.active {
-            color: #4CAF50;
-        }
+
+            nav a:hover, nav a.active {
+                color: #4CAF50;
+            }
 
         /* 頁面切換機制 */
         .page {
@@ -82,9 +84,10 @@
             margin: 0 auto;
             width: 100%;
         }
-        .page.active {
-            display: block;
-        }
+
+            .page.active {
+                display: block;
+            }
 
         /* HOME 頁面樣式：CyberAnt跟尋找生物與科技的潛能區域（留大一點） */
         .hero {
@@ -92,21 +95,21 @@
             margin-bottom: 160px; /* 大幅增加與下方引言的間距，避免靠太近 */
             padding: 80px 0 40px 0; /* 加大上方的留白區域 */
         }
-        /* CyberAnt的大標題，顏色要是綠的 */
-        .hero h1 {
-            font-size: 64px; 
-            color: #4CAF50;
-            margin-bottom: 30px;
-            font-weight: 900;
-        }
-        /* 尋找生物與科技的潛能這個字體要比CyberAnt還要大，字體顏色要是白的 */
-        .hero p {
-            font-size: 72px; 
-            color: #ffffff;
-            letter-spacing: 2px;
-            font-weight: 800;
-            line-height: 1.3;
-        }
+            /* CyberAnt的大標題，顏色要是綠的 */
+            .hero h1 {
+                font-size: 64px;
+                color: #4CAF50;
+                margin-bottom: 30px;
+                font-weight: 900;
+            }
+            /* 尋找生物與科技的潛能這個字體要比CyberAnt還要大，字體顏色要是白的 */
+            .hero p {
+                font-size: 72px;
+                color: #ffffff;
+                letter-spacing: 2px;
+                font-weight: 800;
+                line-height: 1.3;
+            }
 
         /* 隱形表格：一橫排有兩個格子，中線完全對齊網頁正中央 */
         .article-table-grid {
@@ -115,29 +118,32 @@
             margin-bottom: 120px;
             width: 100%;
         }
-        
+
         /* 左邊格子：引言靠左，文字放大 */
         .table-cell-left {
             padding-right: 40px; /* 給予中線右側一點適當間距 */
-            text-align: left;    /* 引言靠左 */
+            text-align: left; /* 引言靠左 */
         }
+
         .article-left-title {
             color: #4CAF50; /* 引言的顏色為綠色 */
-            font-size: 40px; 
+            font-size: 40px;
             font-weight: bold;
             display: inline-block;
         }
-        
+
         /* 右邊格子：文章在右邊的格子靠左 */
         .table-cell-right {
-            padding-left: 20px;  /* 緊貼中線往右起算，靠左對齊 */
-            text-align: left;    /* 文章靠左 */
+            padding-left: 20px; /* 緊貼中線往右起算，靠左對齊 */
+            text-align: left; /* 文章靠左 */
         }
+
         .article-right-content p {
             color: #ffffff; /* 整段文章的顏色字體為白色 */
             font-size: 22px; /* 文章內容稍微放大 */
             line-height: 1.9;
         }
+
         .spacer {
             height: 35px; /* 確保兩個段落中有一個空白段落 */
         }
@@ -150,7 +156,7 @@
         /* 研究核心大標題：字體顏色為綠色 */
         .core-research-title {
             color: #4CAF50;
-            font-size: 44px; 
+            font-size: 44px;
             margin-bottom: 45px;
             font-weight: bold;
             border-bottom: 2px solid #222;
@@ -163,6 +169,7 @@
             justify-content: space-between;
             gap: 50px;
         }
+
         .feature-item {
             flex: 1;
             text-align: center;
@@ -170,7 +177,7 @@
         /* 科技感主題圖片（全面放大） */
         .feature-svg {
             width: 100%;
-            height: 240px; 
+            height: 240px;
             background-color: #111111;
             border: 1px solid #333333;
             border-radius: 12px;
@@ -179,14 +186,14 @@
         /* 圖片下方小標，字體為綠色（放大） */
         .feature-item h3 {
             color: #4CAF50;
-            font-size: 28px; 
+            font-size: 28px;
             margin-bottom: 20px;
             font-weight: bold;
         }
         /* 內容字體為白色（放大） */
         .feature-item p {
             color: #ffffff;
-            font-size: 20px; 
+            font-size: 20px;
             line-height: 1.8;
             text-align: left;
         }
@@ -194,7 +201,7 @@
         /* PLANS的即將發表文字放大，字體為綠色 */
         #plans-page .status-msg {
             color: #4CAF50;
-            font-size: 64px; 
+            font-size: 64px;
             text-align: center;
             margin-top: 150px;
             font-weight: 900;
@@ -219,15 +226,16 @@
             font-size: 18px;
             margin-top: auto;
         }
-        /* 知行天下股份有限公司設置超連結 */
-        footer a {
-            color: #ffffff;
-            text-decoration: underline;
-            transition: color 0.3s;
-        }
-        footer a:hover {
-            color: #4CAF50;
-        }
+            /* 知行天下股份有限公司設置超連結 */
+            footer a {
+                color: #ffffff;
+                text-decoration: underline;
+                transition: color 0.3s;
+            }
+
+                footer a:hover {
+                    color: #4CAF50;
+                }
 
         /* 響應式微調 */
         @media (max-width: 992px) {
@@ -235,10 +243,12 @@
                 grid-template-columns: 1fr; /* 小螢幕自動切回單欄避免擠壓 */
                 gap: 25px;
             }
+
             .features-grid {
                 flex-direction: column;
                 gap: 50px;
             }
+
             .hero p {
                 font-size: 48px;
             }
