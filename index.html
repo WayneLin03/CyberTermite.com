@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberTermite</title>
+    <style>
+        /* 全域與背景顏色設定 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #000000; /* 每個頁面的顏色為黑色 */
+            color: #ffffff;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* 導覽列與 Logo 樣式 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid #222;
+        }
+        .logo {
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: baseline;
+        }
+        /* Cyber的字體要比Termite還要小，並且Cyber的顏色要是白的 */
+        .logo .cyber {
+            font-size: 18px;
+            color: #ffffff;
+        }
+        /* Termite的顏色是綠色 */
+        .logo .termite {
+            font-size: 24px;
+            color: #4CAF50;
+            margin-left: 2px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        nav a:hover, nav a.active {
+            color: #4CAF50;
+        }
+
+        /* 頁面切換機制 */
+        .page {
+            display: none;
+            flex: 1;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .page.active {
+            display: block;
+        }
+
+        /* HOME 頁面樣式 */
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+        }
+        /* CyberAnt的大標題，顏色要是綠的 */
+        .hero h1 {
+            font-size: 48px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        /* 副標題為尋找生物與科技的潛能，字體顏色要是白的 */
+        .hero p {
+            font-size: 20px;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        /* 文章引言樣式 */
+        .article-section {
+            margin-bottom: 60px;
+        }
+        /* 引言的顏色為綠色 */
+        .article-section h2 {
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        /* 整段文章的顏色字體為白色，且第一個句號後換行並確保有空白段落 */
+        .article-section p {
+            color: #ffffff;
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        .spacer {
+            height: 24px; /* 確保兩個段落中有一個空白段落 */
+        }
+
+        /* 研究核心大標題：字體顏色為綠色 */
+        .core-research-title {
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        /* 三個為一橫排的圖片與文字 */
+        .features-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .feature-item {
+            flex: 1;
+            text-align: center;
+        }
+        /* 科技感主題圖片（使用內嵌 SVG） */
+        .feature-svg {
+            width: 100%;
+            height: 160px;
+            background-color: #111111;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        /* 圖片下方小標，字體為綠色 */
+        .feature-item h3 {
+            color: #4CAF50;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        /* 內容字體為白色 */
+        .feature-item p {
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        /* PLANS 頁面：寫即將發表，字體為綠色 */
+        #plans-page .status-msg {
+            color: #4CAF50;
+            font-size: 28px;
+            text-align: center;
+            margin-top: 100px;
+            font-weight: bold;
+        }
+
+        /* CONTACT 頁面：寫Email，字體為綠色 */
+        #contact-page .contact-msg {
+            color: #4CAF50;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 100px;
+            font-weight: bold;
+        }
+
+        /* 頁尾樣式：頁尾的字體為白色 */
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid #222;
+            color: #ffffff;
+            font-size: 14px;
+            margin-top: auto;
+        }
+        /* 知行天下股份有限公司要設置一個超連結 */
+        footer a {
+            color: #ffffff;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo" onclick="switchPage('home')">
+            <span class="cyber">Cyber</span><span class="termite">Termite</span>
+        </a>
+        <nav>
+            <a id="nav-home" class="active" onclick="switchPage('home')">HOME</a>
+            <a id="nav-plans" onclick="switchPage('plans')">PLANS</a>
+            <a id="nav-contact" onclick="switchPage('contact')">CONTACT</a>
+        </nav>
+    </header>
+
+    <main id="home-page" class="page active">
+        <div class="hero">
+            <h1>CyberAnt</h1>
+            <p>尋找生物與科技的潛能</p>
+        </div>
+
+        <div class="article-section">
+            <h2>引言</h2>
+            <p>經過自然界數億年的演化，生物比人類短短數載的科技更為精密，我們致力於開發可以實際應用的生物科技。</p>
+            <div class="spacer"></div> <p>而cyberant不單單是單體部署，我們將要實現可以用於各種戰場與災難現場的機器人，而cyber是以網路與電子為開發核心，並以宮崎駿的風之谷為啟發做出群體智慧，而ant代表群體生物意識的代表，我們將實現可以自行行動與思考的群體智慧。</p>
+        </div>
+
+        <h2 class="core-research-title">研究核心</h2>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <svg class="feature-svg" viewBox="0 0 200 120">
+                    <circle cx="100" cy="60" r="10" fill="none" stroke="#4CAF50" stroke-width="2"/>
+                    <circle cx="50" cy="35" r="6" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    <circle cx="150" cy="35" r="6" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    <circle cx="60" cy="90" r="6" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    <circle cx="140" cy="90" r="6" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    <line x1="100" y1="60" x2="50" y2="35" stroke="#4CAF50" stroke-width="1"/>
+                    <line x1="100" y1="60" x2="150" y2="35" stroke="#4CAF50" stroke-width="1"/>
+                    <line x1="100" y1="60" x2="60" y2="90" stroke="#4CAF50" stroke-width="1"/>
+                    <line x1="100" y1="60" x2="140" y2="90" stroke="#4CAF50" stroke-width="1"/>
+                </svg>
+                <h3>創新</h3>
+                <p>分散式系統架構與自主控制並配備模組化設計隨機應用各種場合</p>
+            </div>
+
+            <div class="feature-item">
+                <svg class="feature-svg" viewBox="0 0 200 120">
+                    <path d="M 30,95 L 70,70 L 115,80 L 170,30" fill="none" stroke="#4CAF50" stroke-width="2.5"/>
+                    <circle cx="30" cy="95" r="4" fill="#ffffff"/>
+                    <circle cx="70" cy="70" r="4" fill="#ffffff"/>
+                    <circle cx="115" cy="80" r="4" fill="#ffffff"/>
+                    <circle cx="170" cy="30" r="5" fill="#4CAF50"/>
+                    <line x1="20" y1="105" x2="180" y2="105" stroke="#333333" stroke-width="1"/>
+                </svg>
+                <h3>發展性</h3>
+                <p>分散式系統架構與自主控制並配備模組化設計隨機應用各種場合</p>
+            </div>
+
+            <div class="feature-item">
+                <svg class="feature-svg" viewBox="0 0 200 120">
+                    <path d="M 100,25 C 115,25 128,28 132,35 C 132,65 112,85 100,92 C 88,85 68,65 68,35 C 72,28 85,25 100,25 Z" fill="none" stroke="#4CAF50" stroke-width="2"/>
+                    <path d="M 90,48 L 100,58 L 110,48" fill="none" stroke="#ffffff" stroke-width="2"/>
+                    <line x1="100" y1="38" x2="100" y2="58" stroke="#ffffff" stroke-width="2"/>
+                </svg>
+                <h3>價值</h3>
+                <p>可以減少訓練與人員傷亡，並降低價格</p>
+            </div>
+        </div>
+    </main>
+
+    <main id="plans-page" class="page">
+        <div class="status-msg">即將發表</div>
+    </main>
+
+    <main id="contact-page" class="page">
+        <div class="contact-msg">Email:G7500511@gmail.com (林先生)</div>
+    </main>
+
+    <footer>
+        本網站由 <a href="https://www.kecl.com.tw/" target="_blank">知行天下股份有限公司</a> 設計及維護
+    </footer>
+
+    <script>
+        function switchPage(pageId) {
+            // 隱藏所有頁面
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // 移除所有導覽列連結的 active 樣式
+            document.querySelectorAll('nav a').forEach(nav => {
+                nav.classList.remove('active');
+            });
+
+            // 顯示當前點擊的頁面並點亮導覽列
+            document.getElementById(pageId + '-page').classList.add('active');
+            document.getElementById('nav-' + pageId).classList.add('active');
+            
+            // 讓網頁自動捲動回頂端
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
