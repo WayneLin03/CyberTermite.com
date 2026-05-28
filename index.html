@@ -89,7 +89,7 @@
                 display: block;
             }
 
-        /* HOME 頁面樣式：CyberAnt跟尋找生物與科技的潛能區域（留大一點） */
+        /* HOME 頁面樣式：CyberAnt跟尋找生物與科技的潛能區域 */
         .hero {
             text-align: left; /* 全面靠左 */
             margin-bottom: 160px; /* 大幅增加與下方引言的間距，避免靠太近 */
@@ -121,12 +121,12 @@
 
         /* 左邊格子：引言靠左，文字放大 */
         .table-cell-left {
-            padding-right: 40px; /* 給予中線右側一點適當間距 */
-            text-align: left; /* 引言靠左 */
+            padding-right: 40px;
+            text-align: left;
         }
 
         .article-left-title {
-            color: #4CAF50; /* 引言的顏色為綠色 */
+            color: #4CAF50;
             font-size: 40px;
             font-weight: bold;
             display: inline-block;
@@ -134,18 +134,18 @@
 
         /* 右邊格子：文章在右邊的格子靠左 */
         .table-cell-right {
-            padding-left: 20px; /* 緊貼中線往右起算，靠左對齊 */
-            text-align: left; /* 文章靠左 */
+            padding-left: 20px;
+            text-align: left;
         }
 
         .article-right-content p {
-            color: #ffffff; /* 整段文章的顏色字體為白色 */
-            font-size: 22px; /* 文章內容稍微放大 */
+            color: #ffffff;
+            font-size: 22px;
             line-height: 1.9;
         }
 
         .spacer {
-            height: 35px; /* 確保兩個段落中有一個空白段落 */
+            height: 35px;
         }
 
         /* 研究核心那一整個區塊都要放大 */
@@ -174,7 +174,7 @@
             flex: 1;
             text-align: center;
         }
-        /* 科技感主題圖片（全面放大） */
+        /* 科技感主題圖片 */
         .feature-svg {
             width: 100%;
             height: 240px;
@@ -183,14 +183,14 @@
             border-radius: 12px;
             margin-bottom: 25px;
         }
-        /* 圖片下方小標，字體為綠色（放大） */
+        /* 圖片下方小標，字體為綠色 */
         .feature-item h3 {
             color: #4CAF50;
             font-size: 28px;
             margin-bottom: 20px;
             font-weight: bold;
         }
-        /* 內容字體為白色（放大） */
+        /* 內容字體為白色 */
         .feature-item p {
             color: #ffffff;
             font-size: 20px;
@@ -198,17 +198,40 @@
             text-align: left;
         }
 
-        /* PLANS的即將發表文字放大，字體為綠色 */
-        #plans-page .status-msg {
+        /* ================= PLANS 頁面專屬樣式 ================= */
+        .plans-title {
             color: #4CAF50;
-            font-size: 64px;
-            text-align: center;
-            margin-top: 150px;
-            font-weight: 900;
-            letter-spacing: 4px;
+            font-size: 44px;
+            font-weight: bold;
+            margin-bottom: 45px;
+            border-bottom: 2px solid #222;
+            padding-bottom: 20px;
+            text-align: left;
+        }
+        /* 建立雙欄排列的 FB 貼文網格 */
+        .fb-posts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 每排兩個 */
+            gap: 40px; /* 貼文之間的間距 */
+            justify-items: center; /* 讓貼文在格子內置中 */
+            align-items: start;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+        /* 貼文外層容器，確保在深色背景下有良好的留白與質感 */
+        .fb-card {
+            background-color: #111111;
+            border: 1px solid #222222;
+            border-radius: 12px;
+            padding: 15px;
+            width: 100%;
+            max-width: 550px; /* 限制寬度符合 FB 官方推薦大小 */
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        /* CONTACT 頁面：寫Email，字體為綠色 */
+        /* CONTACT 頁面：寫Email */
         #contact-page .contact-msg {
             color: #4CAF50;
             font-size: 36px;
@@ -217,7 +240,7 @@
             font-weight: bold;
         }
 
-        /* 頁尾樣式：頁尾的字體為白色 */
+        /* 頁尾樣式 */
         footer {
             text-align: center;
             padding: 40px;
@@ -226,7 +249,7 @@
             font-size: 18px;
             margin-top: auto;
         }
-            /* 知行天下股份有限公司設置超連結 */
+
             footer a {
                 color: #ffffff;
                 text-decoration: underline;
@@ -239,9 +262,9 @@
 
         /* 響應式微調 */
         @media (max-width: 992px) {
-            .article-table-grid {
-                grid-template-columns: 1fr; /* 小螢幕自動切回單欄避免擠壓 */
-                gap: 25px;
+            .article-table-grid, .fb-posts-grid {
+                grid-template-columns: 1fr; /* 小螢幕自動切回單欄 */
+                gap: 30px;
             }
 
             .features-grid {
@@ -256,6 +279,9 @@
     </style>
 </head>
 <body>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v18.0"></script>
 
     <header>
         <a href="#" class="logo" onclick="switchPage('home')">
@@ -279,18 +305,17 @@
             <div class="table-cell-left">
                 <div class="article-left-title">引言</div>
             </div>
-            
             <div class="table-cell-right">
                 <div class="article-right-content">
                     <p>經過自然界數億年的演化，生物比人類短短數載的科技更為精密，我們致力於開發可以實際應用的生物科技。</p>
-                    <div class="spacer"></div> <p>而cyberant不單單是單體部署，我們將要實現可以用於各種戰場與災難現場的機器人，而cyber是以網路與電子為開發核心，並以宮崎駿的風之谷為啟發做出群體智慧，而ant代表群體生物意識的代表，我們將實現可以自行行動與思考的群體智慧。</p>
+                    <div class="spacer"></div>
+                    <p>而cyberant不單單是單體部署，我們將要實現可以用於各種戰場與災難現場的機器人，而cyber是以網路與電子為開發核心，並以宮崎駿的風之谷為啟發做出群體智慧，而ant代表群體生物意識的代表，我們將實現可以自行行動與思考的群體智慧。</p>
                 </div>
             </div>
         </div>
 
         <div class="core-research-section">
             <h2 class="core-research-title">研究核心</h2>
-
             <div class="features-grid">
                 <div class="feature-item">
                     <svg class="feature-svg" viewBox="0 0 200 120">
@@ -335,7 +360,51 @@
     </main>
 
     <main id="plans-page" class="page">
-        <div class="status-msg">即將發表</div>
+        <h2 class="plans-title">PLANS</h2>
+        
+        <div class="fb-posts-grid">
+            
+            <div class="fb-card">
+                <div class="fb-post" data-href="https://www.facebook.com/share/p/1CzYHXgpH6/" data-width="500" data-show-text="true"></div>
+            </div>
+
+            <div class="fb-card">
+                <div class="fb-post" data-href="https://www.facebook.com/share/p/1BMp5kAFbN/" data-width="500" data-show-text="true"></div>
+            </div>
+
+            <div class="fb-card">
+                <div class="fb-post" data-href="https://www.facebook.com/share/p/1CWteMJRUR/" data-width="500" data-show-text="true"></div>
+            </div>
+
+            <div class="fb-card">
+                <div class="fb-post" data-href="https://www.facebook.com/share/p/1EGTuwUkVJ/" data-width="500" data-show-text="true"></div>
+            </div>
+
+            <div class="fb-card">
+                <div class="fb-post" data-href="https://www.facebook.com/share/p/1GnhRL1bw7/" data-width="500" data-show-text="true"></div>
+            </div>
+
+            <div class="fb-card">
+                <div class="fb-post" data-href="https://www.facebook.com/share/p/1LvrLbuYbf/" data-width="500" data-show-text="true"></div>
+            </div>
+
+            <div class="fb-card">
+                <div class="fb-post" data-href="https://www.facebook.com/share/p/18HAwTBgKw/" data-width="500" data-show-text="true"></div>
+            </div>
+
+            <div class="fb-card">
+                <div class="fb-post" data-href="https://www.facebook.com/share/p/1avtCEh5Kg/" data-width="500" data-show-text="true"></div>
+            </div>
+
+            <div class="fb-card">
+                <div class="fb-post" data-href="https://www.facebook.com/share/p/1DwJJBfgZP/" data-width="500" data-show-text="true"></div>
+            </div>
+
+            <div class="fb-card">
+                <div class="fb-post" data-href="https://www.facebook.com/share/p/1YS46AeJzb/" data-width="500" data-show-text="true"></div>
+            </div>
+
+        </div>
     </main>
 
     <main id="contact-page" class="page">
@@ -357,6 +426,11 @@
 
             document.getElementById(pageId + '-page').classList.add('active');
             document.getElementById('nav-' + pageId).classList.add('active');
+            
+            // 切換分頁時，如果包含了 FB 貼文，強制重新解析，確保每次點 PLANS 貼文都能順利載入
+            if(pageId === 'plans' && typeof FB !== 'undefined') {
+                FB.XFBML.parse();
+            }
             
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
