@@ -212,24 +212,29 @@
         .fb-posts-grid {
             display: grid;
             grid-template-columns: 1fr 1fr; /* 每排兩個 */
-            gap: 40px; /* 貼文之間的間距 */
+            gap: 30px; /* 貼文之間的間距 */
             justify-items: center; /* 讓貼文在格子內置中 */
             align-items: start;
             width: 100%;
             margin-bottom: 60px;
         }
-        /* 貼文外層容器，確保在深色背景下有良好的留白與質感 */
+        /* 貼文外層容器，優化動態寬度與黑客風格 */
         .fb-card {
             background-color: #111111;
             border: 1px solid #222222;
             border-radius: 12px;
-            padding: 15px;
+            padding: 10px;
             width: 100%;
-            max-width: 550px; /* 限制寬度符合 FB 官方推薦大小 */
+            max-width: 520px; /* 寬度稍微放寬以完美容納 500px 的 iframe */
             display: flex;
             justify-content: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
+            /* 確保內嵌的 iframe 可以在 RWD 下不爆版 */
+            .fb-card iframe {
+                max-width: 100%;
+                min-height: 500px; /* 建議給予足夠高度以顯示內文與留言，iframe 本身會滾動 */
+            }
 
         /* CONTACT 頁面：寫Email */
         #contact-page .contact-msg {
@@ -261,10 +266,17 @@
                 }
 
         /* 響應式微調 */
+        @media (max-width: 1100px) {
+            .fb-posts-grid {
+                grid-template-columns: 1fr; /* 中小螢幕自動切回單欄避免貼文太擠 */
+                gap: 40px;
+            }
+        }
+
         @media (max-width: 992px) {
-            .article-table-grid, .fb-posts-grid {
-                grid-template-columns: 1fr; /* 小螢幕自動切回單欄 */
-                gap: 30px;
+            .article-table-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
             }
 
             .features-grid {
@@ -279,9 +291,6 @@
     </style>
 </head>
 <body>
-
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v18.0"></script>
 
     <header>
         <a href="#" class="logo" onclick="switchPage('home')">
@@ -365,43 +374,43 @@
         <div class="fb-posts-grid">
             
             <div class="fb-card">
-                <div class="fb-post" data-href="https://www.facebook.com/share/p/1CzYHXgpH6/" data-width="500" data-show-text="true"></div>
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0CE7ztBTigChJhQjT7yqi1QRdT8nWhFdVbiERXG7MLWJPAyNGXybgFH8nAAwWvJaql%26id%3D61590584994938&show_text=true&width=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
 
             <div class="fb-card">
-                <div class="fb-post" data-href="https://www.facebook.com/share/p/1BMp5kAFbN/" data-width="500" data-show-text="true"></div>
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02bkhczXcd4XoLfPdhinsp5dJiFTLqBAHQtv8WrsKmi7aa8d2k55s9XYLG3bc9JKnPl%26id%3D61590584994938&show_text=true&width=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
 
             <div class="fb-card">
-                <div class="fb-post" data-href="https://www.facebook.com/share/p/1CWteMJRUR/" data-width="500" data-show-text="true"></div>
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0udS7RgDKWArkKiWZqRSn9Az2xLUwrq8mg4qtoScPXNq7hx7WDpbCK83wN7AsDu8dl%26id%3D61590584994938&show_text=true&width=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
 
             <div class="fb-card">
-                <div class="fb-post" data-href="https://www.facebook.com/share/p/1EGTuwUkVJ/" data-width="500" data-show-text="true"></div>
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02gBLw9ZbttfsbNget3Sas2UjPQY19YLyztww3xpc4yELzP69T7yLfMDD89aRfSSFvl%26id%3D61590584994938&show_text=true&width=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
 
             <div class="fb-card">
-                <div class="fb-post" data-href="https://www.facebook.com/share/p/1GnhRL1bw7/" data-width="500" data-show-text="true"></div>
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid038RDAtaio53PRvAaQ6KT1Gf8ysuJ5ChroL7FCZRP2jPi81atGDhdW4GtUGXjs7BHl%26id%3D61590584994938&show_text=true&width=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
 
             <div class="fb-card">
-                <div class="fb-post" data-href="https://www.facebook.com/share/p/1LvrLbuYbf/" data-width="500" data-show-text="true"></div>
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02vGZeg8HRt2MrFAduCfCQmuazqgrvnJJzg6vLhpAQp9qGmDiD1S6U167zu9kVUhD1l%26id%3D61590584994938&show_text=true&width=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
 
             <div class="fb-card">
-                <div class="fb-post" data-href="https://www.facebook.com/share/p/18HAwTBgKw/" data-width="500" data-show-text="true"></div>
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02K4ShcSVgJGLKVoTAz8xUTgxMzf5cqrU6RDk6GYth5wLXewfMSgLQdaKMA3jinYjHl%26id%3D61590584994938&show_text=true&width=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
 
             <div class="fb-card">
-                <div class="fb-post" data-href="https://www.facebook.com/share/p/1avtCEh5Kg/" data-width="500" data-show-text="true"></div>
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid028CJSq3g5c4LezFq3BcTGaCfAF2xqnAd2AL3c5gPw38x5afkUWMRQ1jiDJfnHHGwgl%26id%3D61590584994938&show_text=true&width=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
 
             <div class="fb-card">
-                <div class="fb-post" data-href="https://www.facebook.com/share/p/1DwJJBfgZP/" data-width="500" data-show-text="true"></div>
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02czZVSebE6A9kMsBz6sivq5mE6C3HDRba6wTkA1j5PuTcZD6LQqD2qsQ9ux2wpmKXl%26id%3D61590584994938&show_text=true&width=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
 
             <div class="fb-card">
-                <div class="fb-post" data-href="https://www.facebook.com/share/p/1YS46AeJzb/" data-width="500" data-show-text="true"></div>
+                <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0tgige96EPhNVeJS7aXiVp7s5AR9sRRXdxujWBLUEYfdSG7v8eggcQ3AFFtNFBdn3l%26id%3D61590584994938&show_text=true&width=500" width="500" height="500" style="border:none;overflow:hidden" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
 
         </div>
@@ -426,11 +435,6 @@
 
             document.getElementById(pageId + '-page').classList.add('active');
             document.getElementById('nav-' + pageId).classList.add('active');
-            
-            // 切換分頁時，如果包含了 FB 貼文，強制重新解析，確保每次點 PLANS 貼文都能順利載入
-            if(pageId === 'plans' && typeof FB !== 'undefined') {
-                FB.XFBML.parse();
-            }
             
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
